@@ -2,6 +2,7 @@ package hello;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -17,6 +18,9 @@ public class GreetingController {
 	@Autowired
 	private Environment environment;
 
+	@Autowired
+	private Properties appInfoProperties;
+
 	@RequestMapping(value = "/")
 	public String index() {
 		return "redirect:greeting";
@@ -25,10 +29,14 @@ public class GreetingController {
 	@RequestMapping("/greeting")
 	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
 		model.addAttribute("name", name);
+		
 		model.addAttribute("activeProfiles", StringUtils.arrayToCommaDelimitedString(environment.getActiveProfiles()));
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		model.addAttribute("dateTime", formatter.format(LocalDateTime.now()));
+		
+		model.addAttribute("projectVersion", appInfoProperties.getProperty("Project-Version"));
+		model.addAttribute("buildDate", appInfoProperties.getProperty("Build-Date"));
 		return "greeting";
 	}
 
