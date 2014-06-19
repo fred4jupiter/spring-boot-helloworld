@@ -1,7 +1,6 @@
 package hello;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +30,8 @@ public class GreetingController {
 		model.addAttribute("name", name);
 		
 		model.addAttribute("activeProfiles", StringUtils.arrayToCommaDelimitedString(environment.getActiveProfiles()));
-
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		model.addAttribute("dateTime", formatter.format(LocalDateTime.now()));
+		
+		model.addAttribute("dateTime", new Date());
 		
 		model.addAttribute("projectVersion", appInfoProperties.getProperty("Project-Version"));
 		model.addAttribute("buildDate", appInfoProperties.getProperty("Build-Date"));
