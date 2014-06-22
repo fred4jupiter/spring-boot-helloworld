@@ -1,0 +1,48 @@
+Docker commands:
+-------------------------------------
+
+sudo docker build -t mstaehler/spring-boot-helloworld .
+- builds the docker image with name 'mstaehler/spring-boot-helloworld' in current dir (where the Dockerfile is located)
+
+sudo docker images
+- shows all local docker images
+
+sudo docker -v
+- show the docker version
+
+sudo docker run -p 49160:8080 -d mstaehler/spring-boot-helloworld
+- runs the image with name 'mstaehler/spring-boot-helloworld' in detached mode (-d) and maps the internal port 8080 to host port 49160
+
+sudo docker ps
+- shows the running containers with port mapping
+
+sudo docker ps -a
+- lists all containers
+
+sudo docker logs <CONTAINER_ID>
+- shows the internal logs of running container with givenn ID
+
+sudo docker info
+- shows general docker infos
+
+sudo docker pull ubuntu
+- downloads the ubuntu image
+
+sudo docker run -i -t ubuntu /bin/bash
+- running the interactive shell
+
+sudo docker stop <CONTAINER_ID>
+- stops a container
+
+sudo docker start <CONTAINER_ID>
+- starts a container
+
+sudo docker restart <CONTAINER_ID>
+- restarts a container
+
+sudo docker kill <CONTAINER_ID>
+- kills a container
+
+sudo docker commit <container_id> <some_name>
+- Commit your container to a new named image
+
