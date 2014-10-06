@@ -2,7 +2,7 @@
 
 FROM dockerfile/java
 
-MAINTAINER hamsterhase@gmx.de
+MAINTAINER Michael Staehler <hamsterhase@gmx.de>
  
 # Assumes your-app.jar is in the same dir as Dockerfile when you do a `docker build .`
 ADD target/spring-boot-helloworld.jar /src/
